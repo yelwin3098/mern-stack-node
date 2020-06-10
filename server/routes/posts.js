@@ -10,4 +10,11 @@ module.exports=(router)=>{
     
     router.route('/posttag')
         .post(postcontroller.savePostAndTagAsync)
+
+    router.route('/removepost')
+        .get(postcontroller.removePost)
+
+    router
+        .route('/savecomment')
+        .post(postcontroller.savecomment)
 }

@@ -7,5 +7,5 @@ module.exports=(router)=>{
     
     router.route('/users')
         .get(JwtAuthModdleware, usercontroller.getAllUsers)
-        .post(JwtAuthModdleware, usercontroller.addUser)
+        .post(usercontroller.addUser)
 }

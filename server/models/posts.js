@@ -55,4 +55,8 @@ PostSchema.methods.savePostTags = async function(request){
     }
     return {post:savedpost, tags:savedtags};    
 }
+PostSchema.methods.comment = function(c){
+    this.comments.push(c);
+    return this.save();
+}
 module.exports=mongoose.model('Post',PostSchema);

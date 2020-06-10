@@ -12,6 +12,8 @@ const router=express.Router();
 router.use(bodyParser.urlencoded({extended:false}));
 router.use(bodyParser.json());
 
+//for MongoAlt url mongodb+srv://yelwin:yelwinppp3098@mern-stack-2kr6i.mongodb.net/mern-stack?retryWrites=true&w=majority
+
 const url=process.env.MONGOD_URI || "mongodb://localhost:27017/mernstack";
 
 try{
@@ -24,15 +26,23 @@ try{
     console.log(error)
 }
 
-let port=5000 || process.env.PORT
+
 
 routes(router)
 
-app.use(cors());
+const corsOptions={
+	origin:'http://localhost:3000',
+	credentials:true
+}
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json())
 
 app.use('/api',router)
 
-app.listen(port,()=>{
-    console.log(`Server startted at port ${port}`);
+/** start server */
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function() {
+  	console.log('Node app is running on port', app.get('port'));
 });
